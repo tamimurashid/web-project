@@ -238,6 +238,91 @@ if ($isLoggedIn && isset($_POST['action']) && $_POST['action'] === 'delete_testi
     }
 }
 
+// Add new admin
+if ($isLoggedIn && isset($_POST['action']) && $_POST['action'] === 'add_admin') {
+    $newUsername = trim($_POST['new_username'] ?? '');
+    $newEmail = trim($_POST['new_email'] ?? '');
+    $newPassword = $_POST['new_password'] ?? '';
+    $newFullName = trim($_POST['new_full_name'] ?? '');
+    $newRole = $_POST['new_role'] ?? 'staff';
+    
+    if ($newUsername && $newEmail && $newPassword) {
+        try {
+            // Check if username or email already exists
+            $stmt = $pdo->prepare("SELECT id FROM admins WHERE username = ? OR email = ?");
+            $stmt->execute([$newUsername, $newEmail]);
+            if ($stmt->fetch()) {
+                $error = 'Username or email already exists';
+            } else {
+                $passwordHash = password_hash($newPassword, PASSWORD_DEFAULT);
+                $stmt = $pdo->prepare("
+                    INSERT INTO admins (username, email, password_hash, full_name, role, is_active)
+                    VALUES (?, ?, ?, ?, ?, TRUE)
+                ");
+                $stmt->execute([$newUsername, $newEmail, $passwordHash, $newFullName, $newRole]);
+                $message = 'Admin added successfully';
+            }
+        } catch (PDOException $e) {
+            $error = 'Failed to add admin: ' . $e->getMessage();
+        }
+    } else {
+        $error = 'Please fill all required fields';
+    }
+}
+
+// Delete admin
+if ($isLoggedIn && isset($_POST['action']) && $_POST['action'] === 'delete_admin') {
+    $adminId = $_POST['admin_id'] ?? 0;
+    
+    if ($adminId) {
+        try {
+            // Prevent deleting yourself
+            if ($adminId == $_SESSION['admin_id']) {
+                $error = 'You cannot delete your own account';
+            } else {
+                $stmt = $pdo->prepare("DELETE FROM admins WHERE id = ?");
+                $stmt->execute([$adminId]);
+                $message = 'Admin deleted successfully';
+            }
+        } catch (PDOException $e) {
+            $error = 'Failed to delete admin';
+        }
+    }
+}
+
+// Change password
+if ($isLoggedIn && isset($_POST['action']) && $_POST['action'] === 'change_password') {
+    $currentPassword = $_POST['current_password'] ?? '';
+    $newPassword = $_POST['new_password'] ?? '';
+    $confirmPassword = $_POST['confirm_password'] ?? '';
+    
+    if ($currentPassword && $newPassword && $confirmPassword) {
+        if ($newPassword !== $confirmPassword) {
+            $error = 'New passwords do not match';
+        } else {
+            try {
+                // Verify current password
+                $stmt = $pdo->prepare("SELECT password_hash FROM admins WHERE id = ?");
+                $stmt->execute([$_SESSION['admin_id']]);
+                $admin = $stmt->fetch();
+                
+                if ($admin && password_verify($currentPassword, $admin['password_hash'])) {
+                    $newHash = password_hash($newPassword, PASSWORD_DEFAULT);
+                    $stmt = $pdo->prepare("UPDATE admins SET password_hash = ? WHERE id = ?");
+                    $stmt->execute([$newHash, $_SESSION['admin_id']]);
+                    $message = 'Password changed successfully';
+                } else {
+                    $error = 'Current password is incorrect';
+                }
+            } catch (PDOException $e) {
+                $error = 'Failed to change password';
+            }
+        }
+    } else {
+        $error = 'Please fill all password fields';
+    }
+}
+
 // Get data based on tab
 if ($isLoggedIn && $pdo) {
     try {
@@ -272,6 +357,16 @@ if ($isLoggedIn && $pdo) {
         } elseif ($tab === 'testimonials') {
             $stmt = $pdo->query("SELECT * FROM testimonials ORDER BY created_at DESC");
             $testimonials = $stmt->fetchAll();
+            
+        } elseif ($tab === 'admins') {
+            $stmt = $pdo->query("SELECT id, username, email, full_name, role, is_active, last_login, created_at FROM admins ORDER BY created_at DESC");
+            $admins = $stmt->fetchAll();
+            
+        } elseif ($tab === 'profile') {
+            // Get current admin info
+            $stmt = $pdo->prepare("SELECT id, username, email, full_name, role, last_login FROM admins WHERE id = ?");
+            $stmt->execute([$_SESSION['admin_id']]);
+            $currentAdmin = $stmt->fetch();
         }
     } catch (PDOException $e) {
         error_log("Tab data error: " . $e->getMessage());
@@ -405,6 +500,16 @@ if ($isLoggedIn && $pdo) {
                 <li class="nav-item">
                     <a class="nav-link <?= $tab === 'testimonials' ? 'active' : '' ?>" href="?tab=testimonials">
                         <i class="bi bi-chat-quote me-2"></i>Testimonials
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= $tab === 'admins' ? 'active' : '' ?>" href="?tab=admins">
+                        <i class="bi bi-people me-2"></i>Admins
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= $tab === 'profile' ? 'active' : '' ?>" href="?tab=profile">
+                        <i class="bi bi-person-gear me-2"></i>Profile
                     </a>
                 </li>
             </ul>
@@ -903,6 +1008,183 @@ if ($isLoggedIn && $pdo) {
                 </div>
             </div>
             <?php endif; ?>
+
+            <!-- Admins Tab -->
+            <?php if ($tab === 'admins'): ?>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h4 class="mb-0"><i class="bi bi-people me-2"></i>Manage Admins</h4>
+                            <button class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#addAdminModal">
+                                <i class="bi bi-plus-lg me-2"></i>Add New Admin
+                            </button>
+                        </div>
+                        
+                        <?php if ($message): ?>
+                            <div class="alert alert-success alert-dismissible fade show"><?= htmlspecialchars($message) ?><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+                        <?php endif; ?>
+                        <?php if ($error): ?>
+                            <div class="alert alert-danger alert-dismissible fade show"><?= htmlspecialchars($error) ?><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+                        <?php endif; ?>
+                        
+                        <div class="table-card">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Username</th>
+                                            <th>Email</th>
+                                            <th>Full Name</th>
+                                            <th>Role</th>
+                                            <th>Status</th>
+                                            <th>Last Login</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (!empty($admins)): ?>
+                                            <?php foreach ($admins as $admin): ?>
+                                                <tr>
+                                                    <td class="fw-bold"><?= htmlspecialchars($admin['username']) ?></td>
+                                                    <td><?= htmlspecialchars($admin['email']) ?></td>
+                                                    <td><?= htmlspecialchars($admin['full_name'] ?? '-') ?></td>
+                                                    <td><span class="badge bg-<?= $admin['role'] === 'admin' ? 'primary' : ($admin['role'] === 'manager' ? 'info' : 'secondary') ?>"><?= htmlspecialchars($admin['role']) ?></span></td>
+                                                    <td><span class="badge bg-<?= $admin['is_active'] ? 'success' : 'danger' ?>"><?= $admin['is_active'] ? 'Active' : 'Inactive' ?></span></td>
+                                                    <td><?= $admin['last_login'] ? date('M j, Y g:i A', strtotime($admin['last_login'])) : 'Never' ?></td>
+                                                    <td>
+                                                        <?php if ($admin['id'] != $_SESSION['admin_id']): ?>
+                                                            <form method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this admin?');">
+                                                                <input type="hidden" name="action" value="delete_admin">
+                                                                <input type="hidden" name="admin_id" value="<?= $admin['id'] ?>">
+                                                                <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                                            </form>
+                                                        <?php else: ?>
+                                                            <span class="text-muted"><i class="bi bi-person-check"></i> You</span>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <tr><td colspan="7" class="text-center text-muted py-4">No admins found</td></tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Add Admin Modal -->
+                <div class="modal fade" id="addAdminModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Add New Admin</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+                            <form method="POST">
+                                <div class="modal-body">
+                                    <input type="hidden" name="action" value="add_admin">
+                                    <div class="mb-3">
+                                        <label class="form-label">Username *</label>
+                                        <input type="text" name="new_username" class="form-control" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Email *</label>
+                                        <input type="email" name="new_email" class="form-control" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Full Name</label>
+                                        <input type="text" name="new_full_name" class="form-control">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Role *</label>
+                                        <select name="new_role" class="form-select" required>
+                                            <option value="staff">Staff</option>
+                                            <option value="manager">Manager</option>
+                                            <option value="admin">Admin</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Password *</label>
+                                        <input type="password" name="new_password" class="form-control" required minlength="6">
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <button type="submit" class="btn btn-primary">Add Admin</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <!-- Profile Tab (Change Password) -->
+            <?php if ($tab === 'profile'): ?>
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card border-0 shadow-sm">
+                            <div class="card-body p-4">
+                                <h4 class="mb-4"><i class="bi bi-person-gear me-2"></i>Profile Settings</h4>
+                                
+                                <?php if ($message): ?>
+                                    <div class="alert alert-success alert-dismissible fade show"><?= htmlspecialchars($message) ?><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+                                <?php endif; ?>
+                                <?php if ($error): ?>
+                                    <div class="alert alert-danger alert-dismissible fade show"><?= htmlspecialchars($error) ?><button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>
+                                <?php endif; ?>
+                                
+                                <div class="mb-4 p-3 bg-light rounded">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <small class="text-muted">Username</small>
+                                            <div class="fw-bold"><?= htmlspecialchars($currentAdmin['username'] ?? '') ?></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <small class="text-muted">Email</small>
+                                            <div class="fw-bold"><?= htmlspecialchars($currentAdmin['email'] ?? '') ?></div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <small class="text-muted">Role</small>
+                                            <div class="fw-bold text-capitalize"><?= htmlspecialchars($currentAdmin['role'] ?? '') ?></div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <small class="text-muted">Last Login</small>
+                                            <div class="fw-bold"><?= $currentAdmin['last_login'] ? date('M j, Y g:i A', strtotime($currentAdmin['last_login'])) : 'Never' ?></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <hr>
+                                
+                                <h5 class="mb-3">Change Password</h5>
+                                <form method="POST">
+                                    <input type="hidden" name="action" value="change_password">
+                                    <div class="mb-3">
+                                        <label class="form-label">Current Password *</label>
+                                        <input type="password" name="current_password" class="form-control" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">New Password *</label>
+                                        <input type="password" name="new_password" class="form-control" required minlength="6">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Confirm New Password *</label>
+                                        <input type="password" name="confirm_password" class="form-control" required minlength="6">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary rounded-pill">
+                                        <i class="bi bi-key me-2"></i>Change Password
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endif; ?>
+
         </div>
     </div>
     <?php endif; ?>
