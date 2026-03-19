@@ -469,32 +469,76 @@ if ($pdo) {
     </div>
 
     <!-- Footer -->
-    <footer class="py-5 text-white bg-dark">
-        <div class="container py-lg-4">
-            <div class="row g-5">
+    <footer class="py-5 text-white" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); position: relative; overflow: hidden;">
+        <!-- Decorative Pattern -->
+        <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-image: url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23ffffff\" fill-opacity=\"0.03\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E'); opacity: 0.5;"></div>
+        
+        <div class="container py-lg-4 position-relative">
+            <div class="row g-4 g-lg-5">
+                <!-- Brand Section -->
                 <div class="col-lg-4">
-                    <h3 class="fw-bold mb-4 text-white">UJAMAA <span class="text-primary">HOSTEL</span></h3>
-                    <p class="opacity-70 mb-4">Your safe, social, and authentic gateway to the wonders of Tanzania. Join our community of travelers and volunteers.</p>
-                    <div class="d-flex gap-3 social-links">
-                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="btn btn-outline-light btn-sm rounded-circle"><i class="bi bi-whatsapp"></i></a>
+                    <div class="mb-4">
+                        <h3 class="fw-bold mb-0" style="font-size: 1.75rem; letter-spacing: 1px;">UJAMAA <span style="color: #22c55e;">HOSTEL</span></h3>
+                        <div style="width: 60px; height: 3px; background: linear-gradient(90deg, #22c55e, #16a34a); border-radius: 2px; margin-top: 8px;"></div>
+                    </div>
+                    <p class="mb-4" style="color: rgba(255,255,255,0.85); line-height: 1.7;">Your safe, social, and authentic gateway to the wonders of Tanzania. Join our community of travelers and volunteers.</p>
+                    <div class="d-flex gap-3">
+                        <a href="https://facebook.com/ujamaahostel" target="_blank" class="btn btn-light btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; transition: all 0.3s;"><i class="bi bi-facebook" style="color: #1a1a2e;"></i></a>
+                        <a href="https://instagram.com/ujamaahostel" target="_blank" class="btn btn-light btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; transition: all 0.3s;"><i class="bi bi-instagram" style="color: #1a1a2e;"></i></a>
+                        <a href="https://wa.me/255753960570" target="_blank" class="btn btn-light btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; transition: all 0.3s;"><i class="bi bi-whatsapp" style="color: #1a1a2e;"></i></a>
+                        <a href="mailto:booking.ujamaa.hostel@gmail.com" class="btn btn-light btn-sm rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px; transition: all 0.3s;"><i class="bi bi-envelope" style="color: #1a1a2e;"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-2">
-                    <h5 class="fw-bold mb-4">Quick Links</h5>
-                    <ul class="list-unstyled flex-column d-flex gap-2 opacity-70 small">
-                        <li><a href="#home" class="text-white text-decoration-none hover-primary"><?= __('nav_home') ?></a></li>
-                        <li><a href="#about" class="text-white text-decoration-none hover-primary"><?= __('nav_about') ?></a></li>
-                        <li><a href="#rooms" class="text-white text-decoration-none hover-primary"><?= __('nav_rooms') ?></a></li>
-                        <li><a href="#contact" class="text-white text-decoration-none hover-primary"><?= __('nav_contact') ?></a></li>
+                
+                <!-- Quick Links -->
+                <div class="col-lg-2 col-6">
+                    <h5 class="fw-bold mb-4" style="color: #22c55e;">Quick Links</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-3">
+                        <li><a href="#home" class="text-white text-decoration-none d-inline-block py-1" style="transition: color 0.3s;" onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='white'"><?= __('nav_home') ?></a></li>
+                        <li><a href="#about" class="text-white text-decoration-none d-inline-block py-1" style="transition: color 0.3s;" onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='white'"><?= __('nav_about') ?></a></li>
+                        <li><a href="#rooms" class="text-white text-decoration-none d-inline-block py-1" style="transition: color 0.3s;" onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='white'"><?= __('nav_rooms') ?></a></li>
+                        <li><a href="#contact" class="text-white text-decoration-none d-inline-block py-1" style="transition: color 0.3s;" onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='white'"><?= __('nav_contact') ?></a></li>
                     </ul>
                 </div>
-                <div class="col-lg-6">
-                    <h5 class="fw-bold mb-4">Social Hub</h5>
-                    <p class="opacity-70 mb-4 small">Located within walking distance to Njiro Cinema Complex and major malls. Safe, quiet, and friendly.</p>
-                    <div class="text-center opacity-30 small mt-5 pt-5 border-top border-white border-opacity-10">
-                        © 2026 Ujamaa Hostel Arusha. All Rights Reserved.
+                
+                <!-- Contact Info -->
+                <div class="col-lg-3 col-6">
+                    <h5 class="fw-bold mb-4" style="color: #22c55e;">Contact Us</h5>
+                    <ul class="list-unstyled d-flex flex-column gap-3" style="color: rgba(255,255,255,0.9);">
+                        <li class="d-flex align-items-start gap-3">
+                            <i class="bi bi-geo-alt-fill mt-1" style="color: #22c55e;"></i>
+                            <span>Arusha, Tanzania<br><small class="text-white-50">Njiro Area</small></span>
+                        </li>
+                        <li class="d-flex align-items-center gap-3">
+                            <i class="bi bi-telephone-fill" style="color: #22c55e;"></i>
+                            <span>+255 753 960 570</span>
+                        </li>
+                        <li class="d-flex align-items-center gap-3">
+                            <i class="bi bi-envelope-fill" style="color: #22c55e;"></i>
+                            <span>booking.ujamaa.hostel<br>@gmail.com</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Location Info -->
+                <div class="col-lg-3">
+                    <h5 class="fw-bold mb-4" style="color: #22c55e;">Location</h5>
+                    <p style="color: rgba(255,255,255,0.9); line-height: 1.7;">Within walking distance to Njiro Cinema Complex and major shopping malls. Safe, quiet, and friendly neighborhood.</p>
+                    <div class="d-flex gap-2 flex-wrap">
+                        <span class="badge bg-success bg-opacity-25 text-success px-3 py-2 rounded-pill"><i class="bi bi-shield-check me-1"></i> Safe Area</span>
+                        <span class="badge bg-primary bg-opacity-25 text-primary px-3 py-2 rounded-pill"><i class="bi bi-wifi me-1"></i> Free WiFi</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Bar -->
+            <div class="mt-5 pt-4 border-top" style="border-color: rgba(255,255,255,0.1) !important;">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <small style="color: rgba(255,255,255,0.6);">© 2026 Ujamaa Hostel Arusha. All Rights Reserved.</small>
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <small style="color: rgba(255,255,255,0.5);">Crafted with <i class="bi bi-heart-fill text-danger mx-1" style="font-size: 0.6rem;"></i> in Tanzania</small>
                     </div>
                 </div>
             </div>

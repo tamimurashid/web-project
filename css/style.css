@@ -803,3 +803,30 @@ footer::before {
         border: 1px solid var(--gray-100);
     }
 }
+/* Footer Social Buttons Hover */
+.btn-light.rounded-circle:hover {
+    background: #22c55e !important;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+}
+.btn-light.rounded-circle:hover i {
+    color: white !important;
+}
+
+/* Footer Links Animation */
+footer a {
+    position: relative;
+}
+footer a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #22c55e;
+    transition: width 0.3s ease;
+}
+footer a:hover::after {
+    width: 100%;
+}
