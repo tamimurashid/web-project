@@ -213,6 +213,59 @@ img {
     z-index: 10;
 }
 
+.booking-widget {
+    padding: 1.5rem;
+}
+
+.booking-widget .form-control,
+.booking-widget .form-select {
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+}
+
+.booking-widget .input-group-text {
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem 0 0 0.5rem;
+}
+
+.booking-widget .form-control:focus,
+.booking-widget .form-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+}
+
+.booking-widget .input-group-text {
+    background: white;
+    border-right: none;
+}
+
+.booking-widget .form-control,
+.booking-widget .form-select {
+    border-left: none;
+    background: white;
+}
+
+/* Responsive booking widget */
+@media (max-width: 991px) {
+    .booking-widget-section {
+        margin-top: 0;
+        padding-top: 2rem;
+    }
+    .booking-widget {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 767px) {
+    .booking-widget .row > div {
+        margin-bottom: 0.5rem;
+    }
+    .booking-widget .btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
 .glass-card {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(16px);
@@ -247,14 +300,6 @@ img {
     font-size: 2.25rem;
     margin-bottom: 0.25rem;
     font-weight: 700;
-}
-
-/* Booking Widget */
-.booking-widget-section {
-    position: relative;
-    margin-top: -60px;
-    z-index: 10;
-    padding-bottom: 4rem;
 }
 
 .booking-widget .form-control,
@@ -793,7 +838,7 @@ footer::before {
     .hero-section { min-height: auto; padding: 140px 0 160px; }
     .hero-content h1 { font-size: 2.5rem; }
     .quick-stats { position: relative; background: var(--dark); padding: 2rem 0; border: none; }
-    .booking-widget-section { margin-top: 0; padding-top: 4rem; }
+    .booking-widget-section { margin-top: 0; padding-top: 2rem; }
     .navbar-collapse {
         background: var(--white);
         border-radius: var(--radius-lg);

@@ -130,22 +130,22 @@ if ($pdo) {
     <section id="booking" class="booking-widget-section">
         <div class="container">
             <div class="booking-widget glass-card p-4 p-lg-5 rounded-4" data-aos="fade-up">
-                <form id="quickBookingForm" class="row g-4 align-items-end">
-                    <div class="col-md-3">
+                <form id="quickBookingForm" class="row g-3 g-lg-4 align-items-end">
+                    <div class="col-md-2">
                         <label class="form-label small fw-bold text-uppercase opacity-70 mb-2"><?= __('booking_checkin') ?></label>
                         <div class="input-group">
                             <span class="input-group-text bg-white border-end-0"><i class="bi bi-calendar-event text-primary"></i></span>
                             <input type="text" id="checkin" class="form-control border-start-0" name="checkin" placeholder="Select date">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         <label class="form-label small fw-bold text-uppercase opacity-70 mb-2"><?= __('booking_checkout') ?></label>
                         <div class="input-group">
                             <span class="input-group-text bg-white border-end-0"><i class="bi bi-calendar-check text-primary"></i></span>
                             <input type="text" id="checkout" class="form-control border-start-0" name="checkout" placeholder="Select date">
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <label class="form-label small fw-bold text-uppercase opacity-70 mb-2"><?= __('booking_room_type') ?></label>
                         <div class="input-group">
                             <span class="input-group-text bg-white border-end-0"><i class="bi bi-house-door text-primary"></i></span>
@@ -168,7 +168,7 @@ if ($pdo) {
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary btn-lg w-100 py-3 rounded-pill fw-bold shadow-sm">
+                        <button type="submit" class="btn btn-primary w-100 py-3 rounded-pill fw-bold shadow-sm">
                             <?= __('booking_cta') ?>
                         </button>
                     </div>
