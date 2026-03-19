@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ujamaa Hostel | Your Home in Arusha, Tanzania</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top shadow-sm glass-nav" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="bi bi-building me-2"></i>
+                <span class="brand-text">Ujamaa<span class="text-primary">Hostel</span></span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#home" data-en="Home" data-sw="Mwanzo">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#rooms" data-en="Rooms" data-sw="Vyumba">Rooms</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#amenities" data-en="Amenities" data-sw="Huduma">Amenities</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#gallery" data-en="Gallery" data-sw="Nyumba ya Picha">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact" data-en="Contact" data-sw="Mawasiliano">Contact</a></li>
+                    <!-- Language Switcher -->
+                    <li class="nav-item dropdown lang-switcher ms-lg-3">
+                        <a class="nav-link dropdown-toggle rounded-pill" href="#" id="langDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-translate me-1"></i> <span id="currentLangText">EN</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow-lg border-0" aria-labelledby="langDropdown">
+                            <li><a class="dropdown-item active" href="#" onclick="changeLanguage('en')">English</a></li>
+                            <li><a class="dropdown-item" href="#" onclick="changeLanguage('sw')">Kiswahili</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a href="#booking" class="btn btn-primary rounded-pill px-4" data-en="Book Now" data-sw="Weka Nafasi">Book Now</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-particles" id="particles-js"></div>
+        <div class="container position-relative z-1">
+            <div class="row min-vh-100 align-items-center">
+                <div class="col-lg-8">
+                    <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                        <span class="badge bg-white text-dark mb-3 px-3 py-2 rounded-pill">
+                            <i class="bi bi-geo-alt me-1"></i> Arusha, Tanzania
+                        </span>
+                        <h1 class="display-3 fw-bold mb-4" data-en="Experience Authentic African Hospitality" data-sw="Furahia Ukarimu wa Kweli wa Kiafrika">Experience Authentic African Hospitality</h1>
+                        <p class="lead mb-4" data-en="Welcome to Ujamaa Hostel - Your cozy home away from home in the heart of Arusha. Perfect base for Kilimanjaro adventures and Safari expeditions." data-sw="Karibu Ujamaa Hostel - Nyumba yako ya starehe mbali na nyumbani katikati ya Arusha. Kituo bora kwa safari za Kilimanjaro na Safari.">Welcome to Ujamaa Hostel - Your cozy home away from home in the heart of Arusha. Perfect base for Kilimanjaro adventures and Safari expeditions.</p>
+                        <div class="d-flex flex-wrap gap-3">
+                            <a href="#rooms" class="btn btn-primary btn-lg rounded-pill px-4">
+                                <i class="bi bi-calendar-check me-2"></i>View Rooms
+                            </a>
+                            <a href="#contact" class="btn btn-outline-light btn-lg rounded-pill px-4">
+                                <i class="bi bi-telephone me-2"></i>Contact Us
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-6 col-md-3 mb-3 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+                        <div class="stat-item">
+                            <h3 class="fw-bold text-white">4.5★</h3>
+                            <p class="text-white-50 mb-0">TripAdvisor Rating</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3 mb-md-0" data-aos="fade-up" data-aos-delay="200">
+                        <div class="stat-item">
+                            <h3 class="fw-bold text-white">500+</h3>
+                            <p class="text-white-50 mb-0">Happy Guests</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3 mb-md-0" data-aos="fade-up" data-aos-delay="300">
+                        <div class="stat-item">
+                            <h3 class="fw-bold text-white">24/7</h3>
+                            <p class="text-white-50 mb-0">Support</p>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3 mb-3 mb-md-0" data-aos="fade-up" data-aos-delay="400">
+                        <div class="stat-item">
+                            <h3 class="fw-bold text-white">Free</h3>
+                            <p class="text-white-50 mb-0">Wi-Fi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Widget -->
+    <section class="booking-widget-section" id="booking">
+        <div class="container">
+            <div class="booking-widget glass-card p-4 rounded-4 shadow-xl" data-aos="fade-up" data-aos-delay="100">
+                <form id="bookingForm" class="row g-3 align-items-end">
+                    <div class="col-md-6 col-lg-3">
+                        <label class="form-label fw-semibold">Check-in</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0">
+                                <i class="bi bi-calendar3 text-muted"></i>
+                            </span>
+                            <input type="date" class="form-control border-start-0" id="checkin" name="checkin" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <label class="form-label fw-semibold">Check-out</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0">
+                                <i class="bi bi-calendar3 text-muted"></i>
+                            </span>
+                            <input type="date" class="form-control border-start-0" id="checkout" name="checkout" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-2">
+                        <label class="form-label fw-semibold">Guests</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0">
+                                <i class="bi bi-people text-muted"></i>
+                            </span>
+                            <select class="form-select border-start-0" name="guests" id="guests">
+                                <option value="1">1 Guest</option>
+                                <option value="2" selected>2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4">4 Guests</option>
+                                <option value="5">5+ Guests</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-2">
+                        <label class="form-label fw-semibold">Rooms</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0">
+                                <i class="bi bi-door-open text-muted"></i>
+                            </span>
+                            <select class="form-select border-start-0" name="rooms" id="roomsSelect">
+                                <option value="1" selected>1 Room</option>
+                                <option value="2">2 Rooms</option>
+                                <option value="3">3 Rooms</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="submit" class="btn btn-primary w-100 rounded-pill py-2">
+                            <i class="bi bi-search me-1"></i> Check Availability
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Results will be shown here -->
+                <div id="bookingResults" class="mt-4" style="display: none;"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rooms Section -->
+    <section id="rooms" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="text-primary fw-semibold" data-en="ACCOMMODATION" data-sw="MALAZI">ACCOMMODATION</span>
+                <h2 class="display-5 fw-bold mt-2" data-en="Choose Your Perfect Stay" data-sw="Chagua Makaazi Yako Bora">Choose Your Perfect Stay</h2>
+                <p class="lead text-muted mx-auto" style="max-width: 600px;" data-en="Comfortable, affordable rooms designed for backpackers and travelers exploring Tanzania." data-sw="Vyumba vya starehe na gharama nafuu vilivyoundwa kwa ajili ya wasafiri wanaogundua Tanzania.">
+                    Comfortable, affordable rooms designed for backpackers and travelers exploring Tanzania.
+                </p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Private Room -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="room-card h-100">
+                        <div class="room-image">
+                            <img src="https://lh3.googleusercontent.com/p/AF1QipP6li73ts9NJ41tp6HNfNYR8IQUTCSGPxE4ktZ7=s1360" alt="Private Room" class="img-fluid">
+                            <span class="room-badge">Authentic</span>
+                        </div>
+                        <div class="room-content p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h4 class="fw-bold mb-1" data-en="Private Room" data-sw="Chumba Binafsi">Private Room</h4>
+                                    <p class="text-muted mb-0"><i class="bi bi-person me-1"></i> <span data-en="1-2 Guests" data-sw="Wageni 1-2">1-2 Guests</span></p>
+                                </div>
+                                <div class="text-end">
+                                    <span class="h4 text-primary fw-bold">$45</span>
+                                    <p class="text-muted small mb-0">/<span data-en="night" data-sw="usiku">night</span></p>
+                                </div>
+                            </div>
+                            <ul class="room-features list-unstyled mb-3">
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <span data-en="Incl. Breakfast & Dinner" data-sw="Chakula cha Asubuhi na Jioni">Incl. Breakfast & Dinner</span></li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <span data-en="Laundry Included" data-sw="Huduma ya Dobi">Laundry Included</span></li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <span data-en="Free Wi-Fi" data-sw="Wi-Fi ya Bure">Free Wi-Fi</span></li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <span data-en="Shared Bathroom" data-sw="Choo cha Pamoja">Shared Bathroom</span></li>
+                            </ul>
+                            <button class="btn btn-outline-primary w-100 rounded-pill" onclick="selectRoom('private')" data-en="Book This Room" data-sw="Weka Nafasi">
+                                Book This Room
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Dorm Room -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="room-card h-100">
+                        <div class="room-image">
+                            <img src="https://lh3.googleusercontent.com/p/AF1QipPQi8sT4dpAdRZpgdjHyvSoASkGAUmlIRVVALux=s1360" alt="Dorm Room" class="img-fluid">
+                            <span class="room-badge bg-warning" data-en="Best Value" data-sw="Thamani Bora">Best Value</span>
+                        </div>
+                        <div class="room-content p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h4 class="fw-bold mb-1" data-en="Dormitory Bed" data-sw="Kitanda cha Somo">Dormitory Bed</h4>
+                                    <p class="text-muted mb-0"><i class="bi bi-person me-1"></i> <span data-en="Per Person" data-sw="Kwa Mtu">Per Person</span></p>
+                                </div>
+                                <div class="text-end">
+                                    <span class="h4 text-primary fw-bold">$20</span>
+                                    <p class="text-muted small mb-0">/<span data-en="night" data-sw="usiku">night</span></p>
+                                </div>
+                            </div>
+                            <ul class="room-features list-unstyled mb-3">
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <span data-en="Breakfast, Dinner & Laundry" data-sw="Chakula na Dobi">Breakfast, Dinner & Laundry</span></li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <span data-en="Secure Lockers" data-sw="Makabati Salama">Secure Lockers</span></li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <span data-en="Free Wi-Fi" data-sw="Wi-Fi ya Bure">Free Wi-Fi</span></li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <span data-en="Social Atmosphere" data-sw="Hali ya Kijamii">Social Atmosphere</span></li>
+                            </ul>
+                            <button class="btn btn-outline-primary w-100 rounded-pill" onclick="selectRoom('dorm')" data-en="Book This Bed" data-sw="Weka Nafasi">
+                                Book This Bed
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Camping Option -->
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="room-card h-100">
+                        <div class="room-image">
+                            <img src="https://lh3.googleusercontent.com/p/AF1QipNQsxZWRXSXpR9eTTPAwrO8YDC_x8JaptRp9bFO=s1360" alt="Camping" class="img-fluid">
+                            <span class="room-badge bg-success" data-en="Adventure" data-sw="Matukio">Adventure</span>
+                        </div>
+                        <div class="room-content p-4">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h4 class="fw-bold mb-1" data-en="Camping" data-sw="Kambi">Camping</h4>
+                                    <p class="text-muted mb-0"><i class="bi bi-person me-1"></i> <span data-en="1-2 Guests" data-sw="Wageni 1-2">1-2 Guests</span></p>
+                                </div>
+                                <div class="text-end">
+                                    <span class="h4 text-primary fw-bold">$8</span>
+                                    <p class="text-muted small mb-0">/<span data-en="night" data-sw="usiku">night</span></p>
+                                </div>
+                            </div>
+                            <ul class="room-features list-unstyled mb-3">
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <span data-en="Bring Your Own Tent" data-sw="Leta Hema Lako">Bring Your Own Tent</span></li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <span data-en="Shared Facilities" data-sw="Huduma za Pamoja">Shared Facilities</span></li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <span data-en="BBQ Area Access" data-sw="Eneo la Choma">BBQ Area Access</span></li>
+                                <li><i class="bi bi-check-circle-fill text-success me-2"></i> <span data-en="Garden Views" data-sw="Mandhari ya Bustani">Garden Views</span></li>
+                            </ul>
+                            <button class="btn btn-outline-primary w-100 rounded-pill" onclick="selectRoom('camping')" data-en="Book Now" data-sw="Weka Nafasi">
+                                Book Now
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section id="amenities" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="text-primary fw-semibold">FACILITIES</span>
+                <h2 class="display-5 fw-bold mt-2">Everything You Need</h2>
+                <p class="lead text-muted mx-auto" style="max-width: 600px;">
+                    Modern amenities to make your stay comfortable and memorable.
+                </p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="amenity-card text-center p-4 rounded-4 h-100">
+                        <div class="amenity-icon mb-3">
+                            <i class="bi bi-wifi"></i>
+                        </div>
+                        <h5 class="fw-semibold">Free Wi-Fi</h5>
+                        <p class="text-muted small mb-0">High-speed internet throughout</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="150">
+                    <div class="amenity-card text-center p-4 rounded-4 h-100">
+                        <div class="amenity-icon mb-3">
+                            <i class="bi bi-egg-fried"></i>
+                        </div>
+                        <h5 class="fw-semibold" data-en="Meals Included" data-sw="Chakula Kipo">Meals Included</h5>
+                        <p class="text-muted small mb-0" data-en="Breakfast & Dinner included" data-sw="Asubuhi na Jioni">Breakfast & Dinner included</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="amenity-card text-center p-4 rounded-4 h-100">
+                        <div class="amenity-icon mb-3">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h5 class="fw-semibold" data-en="24/7 Security" data-sw="Ulinzi 24/7">24/7 Security</h5>
+                        <p class="text-muted small mb-0" data-en="Safe and secure environment" data-sw="Hali salama na tulivu">Safe and secure environment</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="250">
+                    <div class="amenity-card text-center p-4 rounded-4 h-100">
+                        <div class="amenity-icon mb-3">
+                            <i class="bi bi-brightness-high"></i>
+                        </div>
+                        <h5 class="fw-semibold" data-en="Laundry" data-sw="Dobi">Laundry</h5>
+                        <p class="text-muted small mb-0" data-en="Daily laundry service included" data-sw="Huduma ya kila siku">Daily laundry service included</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="amenity-card text-center p-4 rounded-4 h-100">
+                        <div class="amenity-icon mb-3">
+                            <i class="bi bi-book"></i>
+                        </div>
+                        <h5 class="fw-semibold">Travel Desk</h5>
+                        <p class="text-muted small mb-0">Safari & tour bookings</p>
+                    </div>
+                </div>
+                <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="250">
+                    <div class="amenity-card text-center p-4 rounded-4 h-100">
+                        <div class="amenity-icon mb-3">
+                            <i class="bi bi-bicycle"></i>
+                        </div>
+                        <h5 class="fw-semibold">Bike Rental</h5>
+                        <p class="text-muted small mb-0">Explore Arusha on two wheels</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="text-primary fw-semibold">GALLERY</span>
+                <h2 class="display-5 fw-bold mt-2">Experience Our Hostel</h2>
+            </div>
+            
+            <div class="row g-3">
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="gallery-item">
+                        <img src="https://lh3.googleusercontent.com/p/AF1QipPtMLZ6QH56NZNFYTYUNIOQHJuIhhSpNXVx_4rX=s1360" alt="Hostel Exterior" class="img-fluid rounded-4">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-arrows-fullscreen"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
+                    <div class="gallery-item">
+                        <img src="https://lh3.googleusercontent.com/p/AF1QipPQi8sT4dpAdRZpgdjHyvSoASkGAUmlIRVVALux=s1360" alt="Dorm Room" class="img-fluid rounded-4">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-arrows-fullscreen"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="gallery-item">
+                        <img src="https://lh3.googleusercontent.com/p/AF1QipP6li73ts9NJ41tp6HNfNYR8IQUTCSGPxE4ktZ7=s1360" alt="Private Room" class="img-fluid rounded-4">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-arrows-fullscreen"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="gallery-item">
+                        <img src="https://lh3.googleusercontent.com/p/AF1QipNQsxZWRXSXpR9eTTPAwrO8YDC_x8JaptRp9bFO=s1360" alt="Garden Area" class="img-fluid rounded-4">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-arrows-fullscreen"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
+                    <div class="gallery-item">
+                        <img src="https://lh3.googleusercontent.com/p/AF1QipOMP1hb_TmAhFRnL-fwI6wx7dMGo1wICSo6dZHC=s1360" alt="Dining Area" class="img-fluid rounded-4">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-arrows-fullscreen"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="gallery-item">
+                        <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/37/81/a3/exterior.jpg?w=1200" alt="Hostel Entrance" class="img-fluid rounded-4">
+                        <div class="gallery-overlay">
+                            <i class="bi bi-arrows-fullscreen"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container py-5">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <span class="text-white-50 fw-semibold">TESTIMONIALS</span>
+                <h2 class="display-5 fw-bold mt-2">What Our Guests Say</h2>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card bg-white bg-opacity-10 p-4 rounded-4 h-100">
+                        <div class="d-flex text-warning mb-3">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="mb-4">"Perfect base for our Kilimanjaro trek! The staff arranged everything - transfers, equipment, even packed lunches. Can't recommend enough!"</p>
+                        <div class="d-flex align-items-center">
+                            <div class="testimonial-avatar me-3">MK</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Michael K.</h6>
+                                <small class="text-white-50">United Kingdom</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card bg-white bg-opacity-10 p-4 rounded-4 h-100">
+                        <div class="d-flex text-warning mb-3">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
+                        <p class="mb-4">"Amazing hostel! Clean, friendly, and the restaurant serves the best local food in Arusha. Met amazing people from all over the world here."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="testimonial-avatar me-3">SL</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Sarah L.</h6>
+                                <small class="text-white-50">Australia</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-card bg-white bg-opacity-10 p-4 rounded-4 h-100">
+                        <div class="d-flex text-warning mb-3">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-half"></i>
+                        </div>
+                        <p class="mb-4">"Great value for money! The travel desk helped us book an incredible 3-day Serengeti safari. Staff went above and beyond to help us."</p>
+                        <div class="d-flex align-items-center">
+                            <div class="testimonial-avatar me-3">JT</div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">James T.</h6>
+                                <small class="text-white-50">Canada</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <span class="text-primary fw-semibold">LOCATION</span>
+                    <h2 class="display-5 fw-bold mt-2 mb-4">Explore Arusha</h2>
+                    <p class="lead text-muted mb-4">
+                        Ujamaa Hostel is perfectly located in the heart of Arusha, Tanzania's safari capital.
+                    </p>
+                    <ul class="list-unstyled">
+                        <li class="d-flex align-items-center mb-3">
+                            <div class="icon-box me-3">
+                                <i class="bi bi-airplane"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Kilimanjaro International Airport</h6>
+                                <small class="text-muted">45 minutes away</small>
+                            </div>
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                            <div class="icon-box me-3">
+                                <i class="bi bi-tree"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Mount Kilimanjaro</h6>
+                                <small class="text-muted">Gateway to the mountain</small>
+                            </div>
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                            <div class="icon-box me-3">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Serengeti & Ngorongoro</h6>
+                                <small class="text-muted">Popular safari departures</small>
+                            </div>
+                        </li>
+                        <li class="d-flex align-items-center mb-3">
+                            <div class="icon-box me-3">
+                                <i class="bi bi-shop"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">City Center</h6>
+                                <small class="text-muted">Walking distance to markets</small>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="https://maps.google.com/?q=Arusha+Tanzania" target="_blank" class="btn btn-outline-primary rounded-pill px-4">
+                        <i class="bi bi-map me-2"></i>View on Map
+                    </a>
+                </div>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="map-container rounded-4 overflow-hidden shadow-lg">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39894.367789567!2d36.6829!3d-3.366!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x18391d48264b2a2d%3A0x80608c0c8e0e0e0!2sArusha%2C%20Tanzania!5e0!3m2!1sen!2sus!4v1234567890!5m2!1sen!2sus" 
+                                width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-5" data-aos="fade-right">
+                    <span class="text-primary fw-semibold">GET IN TOUCH</span>
+                    <h2 class="display-5 fw-bold mt-2 mb-4">Contact Us</h2>
+                    <p class="text-muted mb-4">Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+                    
+                    <div class="contact-info">
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="contact-icon me-3">
+                                <i class="bi bi-geo-alt"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Address</h6>
+                                <p class="text-muted mb-0">Arusha, Tanzania</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="contact-icon me-3">
+                                <i class="bi bi-telephone"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Phone</h6>
+                                <p class="text-muted mb-0">+255 700 000 000</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="contact-icon me-3">
+                                <i class="bi bi-envelope"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Email</h6>
+                                <p class="text-muted mb-0">info@ujamahostel.com</p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <div class="contact-icon me-3">
+                                <i class="bi bi-clock"></i>
+                            </div>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Front Desk</h6>
+                                <p class="text-muted mb-0">24/7 Available</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links mt-4">
+                        <a href="#" class="btn btn-outline-primary rounded-circle me-2">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-primary rounded-circle me-2">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-primary rounded-circle me-2">
+                            <i class="bi bi-twitter-x"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-primary rounded-circle">
+                            <i class="bi bi-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-7" data-aos="fade-left">
+                    <div class="contact-form-wrapper bg-white p-5 rounded-4 shadow-sm">
+                        <form id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">First Name</label>
+                                    <input type="text" class="form-control" name="first_name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Last Name</label>
+                                    <input type="text" class="form-control" name="last_name" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Email</label>
+                                    <input type="email" class="form-control" name="email" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-semibold">Phone</label>
+                                    <input type="tel" class="form-control" name="phone">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold">Subject</label>
+                                    <select class="form-select" name="subject">
+                                        <option value="booking">Booking Inquiry</option>
+                                        <option value="general">General Question</option>
+                                        <option value="safari">Safari & Tours</option>
+                                        <option value="feedback">Feedback</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-semibold">Message</label>
+                                    <textarea class="form-control" rows="5" name="message" required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary btn-lg rounded-pill px-5">
+                                        <i class="bi bi-send me-2"></i> Send Message
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container py-4">
+            <div class="row g-4">
+                <div class="col-lg-5">
+                    <h4 class="fw-bold mb-3">Ujamaa<span class="text-primary">Hostel</span></h4>
+                    <p class="text-white-50 mb-3" data-en="Your home away from home in Arusha, Tanzania. Experience authentic African hospitality while exploring the wonders of East Africa." data-sw="Nyumba yako mbali na nyumbani Arusha, Tanzania. Furahia ukarimu wa kweli wa Kiafrika unapogundua maajabu ya Afrika Mashariki.">Your home away from home in Arusha, Tanzania. Experience authentic African hospitality while exploring the wonders of East Africa.</p>
+                    <div class="d-flex mb-4">
+                        <a href="#" class="btn btn-outline-light rounded-circle me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="btn btn-outline-light rounded-circle me-3"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="btn btn-outline-light rounded-circle me-3"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" class="btn btn-outline-light rounded-circle"><i class="bi bi-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h6 class="fw-bold mb-3" data-en="Quick Links" data-sw="Viungo vya Haraka">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#home" class="text-white-50 text-decoration-none" data-en="Home" data-sw="Mwanzo">Home</a></li>
+                        <li class="mb-2"><a href="#rooms" class="text-white-50 text-decoration-none" data-en="Rooms" data-sw="Vyumba">Rooms</a></li>
+                        <li class="mb-2"><a href="#amenities" class="text-white-50 text-decoration-none" data-en="Amenities" data-sw="Huduma">Amenities</a></li>
+                        <li class="mb-2"><a href="#gallery" class="text-white-50 text-decoration-none" data-en="Gallery" data-sw="Picha">Gallery</a></li>
+                        <li><a href="#contact" class="text-white-50 text-decoration-none" data-en="Contact" data-sw="Mawasiliano">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <h6 class="fw-bold mb-3" data-en="Newsletter" data-sw="Jarida">Newsletter</h6>
+                    <p class="text-white-50 mb-3" data-en="Subscribe for special offers and travel tips." data-sw="Jiandikishe kwa ofa maalum na vidokezo vya kusafiri.">Subscribe for special offers and travel tips.</p>
+                    <form class="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control bg-transparent border-secondary text-white" placeholder="Email" id="newsletterEmail">
+                            <button class="btn btn-primary" type="submit" data-en="Join" data-sw="Jiunge">Join</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="my-4 border-secondary opacity-25">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="text-white-50 mb-0">&copy; 2024 Ujamaa Hostel. <span data-en="All rights reserved." data-sw="Haki zote zimehifadhiwa.">All rights reserved.</span></p>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <a href="#" class="text-white-50 text-decoration-none me-3" data-en="Privacy Policy" data-sw="Sera ya Faragha">Privacy Policy</a>
+                    <a href="#" class="text-white-50 text-decoration-none" data-en="Terms of Service" data-sw="Masharti ya Huduma">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div class="modal fade" id="bookingModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold">Complete Your Booking</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="bookingModalForm">
+                        <input type="hidden" id="selectedRoomType" name="room_type">
+                        
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">First Name *</label>
+                                <input type="text" class="form-control" name="first_name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Last Name *</label>
+                                <input type="text" class="form-control" name="last_name" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Email *</label>
+                                <input type="email" class="form-control" name="email" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Phone *</label>
+                                <input type="tel" class="form-control" name="phone" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Check-in Date *</label>
+                                <input type="date" class="form-control" name="checkin" id="modalCheckin" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Check-out Date *</label>
+                                <input type="date" class="form-control" name="checkout" id="modalCheckout" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Number of Guests</label>
+                                <select class="form-select" name="guests">
+                                    <option value="1">1 Guest</option>
+                                    <option value="2" selected>2 Guests</option>
+                                    <option value="3">3 Guests</option>
+                                    <option value="4">4 Guests</option>
+                                    <option value="5">5+ Guests</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-semibold">Special Requests</label>
+                                <textarea class="form-control" rows="2" name="special_requests" placeholder="Any special requirements..."></textarea>
+                            </div>
+                            
+                            <div class="col-12 mt-4">
+                                <div class="booking-summary bg-light p-3 rounded-3">
+                                    <h6 class="fw-bold mb-3">Booking Summary</h6>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Room Type:</span>
+                                        <span class="fw-semibold" id="summaryRoom">-</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Nights:</span>
+                                        <span class="fw-semibold" id="summaryNights">-</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Price per night:</span>
+                                        <span class="fw-semibold" id="summaryPrice">-</span>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="fw-bold">Total:</span>
+                                        <span class="fw-bold text-primary" id="summaryTotal">-</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12 mt-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="termsCheck" required>
+                                    <label class="form-check-label" for="termsCheck">
+                                        I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Cancellation Policy</a>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary rounded-pill px-4" onclick="submitBooking()">
+                        <i class="bi bi-lock me-1"></i> Confirm Booking
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center p-5">
+                    <div class="success-icon mb-4">
+                        <i class="bi bi-check-circle-fill text-success"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Booking Confirmed!</h4>
+                    <p class="text-muted mb-4">Thank you for your booking! A confirmation email has been sent to your email address.</p>
+                    <p class="text-muted small">Booking Reference: <strong id="bookingRef"></strong></p>
+                    <button type="button" class="btn btn-primary rounded-pill px-5" data-bs-dismiss="modal">Great!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS Animation -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script src="js/main.js"></script>
+    
+    <script>
+        /**
+         * Language Switching Logic
+         */
+        function changeLanguage(lang) {
+            // Update UI markers
+            document.querySelectorAll('[data-en]').forEach(el => {
+                el.innerText = el.getAttribute('data-' + lang);
+            });
+            
+            // Update dropdown active state
+            document.querySelectorAll('.lang-switcher .dropdown-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update current lang text
+            document.getElementById('currentLangText').innerText = lang.toUpperCase();
+            
+            // Save preference
+            localStorage.setItem('preferredLang', lang);
+        }
+
+        // Initialize from storage
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLang') || 'en';
+            if (savedLang !== 'en') {
+                changeLanguage(savedLang);
+            }
+        });
+    </script>
+</body>
+</html>
