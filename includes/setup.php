@@ -216,7 +216,7 @@ try {
         <ol class='mb-0 text-muted' style='line-height: 1.8;'>
             <li>Update database credentials in <code class='bg-white px-2 py-1 rounded'>includes/db.php</code> if needed</li>
             <li>Access the booking website at <code class='bg-white px-2 py-1 rounded'>index.html</code></li>
-            <li>Access the admin panel at <code class='bg-white px-2 py-1 rounded'>admin/admin.php</code></li>
+            <li>Access the admin panel at <code class='bg-white px-2 py-1 rounded'>admin/</code></li>
             <li>Default admin login: <strong>admin</strong> / <strong>ujamaa2024</strong></li>
         </ol>
     </div>";
@@ -225,7 +225,7 @@ try {
         <a href='../index.html' class='btn btn-outline-primary rounded-pill px-4'>
             <i class='bi bi-house me-2'></i> Go to Website
         </a>
-        <a href='../admin/admin.php' class='btn btn-primary rounded-pill px-4'>
+        <a href='../admin/' class='btn btn-primary rounded-pill px-4'>
             <i class='bi bi-speedometer2 me-2'></i> Admin Panel
         </a>
     </div>";
