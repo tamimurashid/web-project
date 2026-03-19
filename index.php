@@ -149,15 +149,25 @@ if ($pdo) {
                         <label class="form-label small fw-bold text-uppercase opacity-70 mb-2"><?= __('booking_room_type') ?></label>
                         <div class="input-group">
                             <span class="input-group-text bg-white border-end-0"><i class="bi bi-house-door text-primary"></i></span>
-                            <select id="roomType" class="form-select border-start-0" name="room_type">
+                            <select id="roomType" class="form-select border-start-0" name="room_type" onchange="updateRoomPrices()">
                                 <option value=""><?= __('booking_room_placeholder') ?></option>
                                 <?php foreach ($rooms as $room): ?>
-                                <option value="<?= htmlspecialchars($room['room_type']) ?>"><?= htmlspecialchars($room['room_name']) ?> - $<?= number_format($room['price_per_night']) ?>/night</option>
+                                <option value="<?= htmlspecialchars($room['room_type']) ?>" data-price-usd="<?= $room['price_per_night'] ?>"><?= htmlspecialchars($room['room_name']) ?> - $<?= number_format($room['price_per_night']) ?>/night</option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
+                        <label class="form-label small fw-bold text-uppercase opacity-70 mb-2">Currency</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0"><i class="bi bi-currency-exchange text-primary"></i></span>
+                            <select id="currency" class="form-select border-start-0" name="currency">
+                                <option value="USD">USD ($)</option>
+                                <option value="TZS">TZS (TSh)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
                         <button type="submit" class="btn btn-primary btn-lg w-100 py-3 rounded-pill fw-bold shadow-sm">
                             <?= __('booking_cta') ?>
                         </button>
@@ -454,8 +464,18 @@ if ($pdo) {
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-12">
+                                <label class="form-label fw-bold small opacity-75">Currency</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-0"><i class="bi bi-currency-exchange text-primary"></i></span>
+                                    <select class="form-select bg-light border-0" name="currency" id="bookingCurrency" onchange="sessionStorage.setItem('bookingCurrency', this.value); calculateTotal();">
+                                        <option value="USD">USD ($)</option>
+                                        <option value="TZS">TZS (TSh)</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <div id="bookingSummary" class="mt-4 p-3 bg-primary bg-opacity-10 rounded-4 d-none"></div>
+                        <div id="bookingSummary" class="mt-4 p-4 bg-success bg-opacity-10 rounded-4 border border-success border-opacity-25 d-none"></div>
                         <div class="d-grid mt-5">
                             <button type="submit" class="btn btn-primary btn-lg rounded-pill py-3 fw-bold shadow-primary">
                                 Confirm & Book Now
@@ -565,10 +585,56 @@ if ($pdo) {
             }
         });
 
-        // Initialize Flatpickr
-        const fpOptions = { minDate: "today", dateFormat: "Y-m-d" };
-        flatpickr("#checkin", fpOptions);
+        // Initialize Flatpickr with min date = tomorrow
+        const fpOptions = { 
+            minDate: new Date().fp_incr(1), // Tomorrow minimum
+            dateFormat: "Y-m-d",
+            disableMobile: "true"
+        };
+        
+        // Currency change handler - update room prices
+        function updateRoomPrices() {
+            const currency = document.getElementById('currency').value;
+            const select = document.getElementById('roomType');
+            const options = select.options;
+            const exchangeRate = 2500;
+            
+            for (let i = 1; i < options.length; i++) {
+                const option = options[i];
+                const priceUSD = parseInt(option.getAttribute('data-price-usd'));
+                let displayPrice, symbol;
+                
+                if (currency === 'TZS') {
+                    displayPrice = (priceUSD * exchangeRate).toLocaleString();
+                    symbol = 'TSh ';
+                } else {
+                    displayPrice = priceUSD;
+                    symbol = '$';
+                }
+                
+                // Keep the room name, update price
+                const roomName = option.text.split(' - ')[0];
+                option.text = `${roomName} - ${symbol}${displayPrice}/night`;
+            }
+        }
+        
+        // Listen for currency changes
+        document.getElementById('currency').addEventListener('change', updateRoomPrices);
+        
+        // Check-in date - tomorrow minimum, updates checkout min date
+        flatpickr("#checkin", {
+            ...fpOptions,
+            onChange: function(selectedDates, dateStr) {
+                const checkinDate = new Date(dateStr);
+                const checkoutFp = document.getElementById("checkout")._flatpickr;
+                checkoutFp.set("minDate", new Date(checkinDate).fp_incr(1));
+            }
+        });
+        
+        // Checkout date - minimum tomorrow
         flatpickr("#checkout", fpOptions);
+        
+        // Modal booking dates
         flatpickr("#bookingCheckin", fpOptions);
         flatpickr("#bookingCheckout", fpOptions);
 
@@ -578,15 +644,42 @@ if ($pdo) {
             const checkin = document.getElementById('checkin').value;
             const checkout = document.getElementById('checkout').value;
             const roomType = document.getElementById('roomType').value;
+            const currency = document.getElementById('currency').value;
             
             if (!checkin || !checkout || !roomType) {
-                alert('Please fill in all fields');
+                const msg = lang === 'sw' ? 'Tafadhali jaza sehemu zote' : 'Please fill in all fields';
+                alert(msg);
                 return;
             }
 
+            // Validate dates
+            const today = new Date();
+            today.setHours(0,0,0,0);
+            const checkinDate = new Date(checkin);
+            const checkoutDate = new Date(checkout);
+            
+            if (checkinDate <= today) {
+                const msg = lang === 'sw' ? 'Tarehe ya kuingia haiwezi kuwa leo au iliyopita' : 'Check-in date cannot be today or in the past';
+                alert(msg);
+                return;
+            }
+            
+            if (checkoutDate <= checkinDate) {
+                const msg = lang === 'sw' ? 'Tarehe ya kuondoka ina faili kuwa baada ya tarehe ya kuingia' : 'Check-out date must be after check-in date';
+                alert(msg);
+                return;
+            }
+
+            // Store currency in sessionStorage for the modal
+            sessionStorage.setItem('bookingCurrency', currency);
+            
             document.getElementById('bookingRoomType').value = roomType;
             document.getElementById('bookingCheckin').value = checkin;
             document.getElementById('bookingCheckout').value = checkout;
+            
+            // Set currency in modal
+            const modalCurrency = document.getElementById('bookingCurrency');
+            modalCurrency.value = currency;
             
             calculateTotal();
             new bootstrap.Modal(document.getElementById('bookingModal')).show();
@@ -596,9 +689,11 @@ if ($pdo) {
             const checkin = document.getElementById('bookingCheckin').value;
             const checkout = document.getElementById('bookingCheckout').value;
             const roomType = document.getElementById('bookingRoomType').value;
+            const currency = sessionStorage.getItem('bookingCurrency') || 'USD';
             
             if (checkin && checkout && roomType) {
-                const prices = {
+                // Prices in USD
+                const pricesUSD = {
                     'dorm': 20,
                     'standard': 45,
                     'deluxe': 55,
@@ -606,27 +701,50 @@ if ($pdo) {
                     'family': 100,
                     'camping': 15
                 };
-                const price = prices[roomType] || 20;
+                
+                // Exchange rate (TZS to USD)
+                const exchangeRate = 2500;
+                
+                let price = pricesUSD[roomType] || 20;
+                let displayPrice = price;
+                let displayTotal;
+                let currencySymbol = '$';
+                let currencyCode = 'USD';
+                
+                if (currency === 'TZS') {
+                    price = price * exchangeRate;
+                    displayPrice = price;
+                    displayTotal = price;
+                    currencySymbol = 'TSh ';
+                    currencyCode = 'TZS';
+                }
+                
                 const date1 = new Date(checkin);
                 const date2 = new Date(checkout);
                 const nights = Math.max(1, Math.ceil((date2 - date1) / (1000 * 60 * 60 * 24)));
-                const total = price * nights;
+                
+                if (currency === 'TZS') {
+                    displayTotal = price * nights;
+                } else {
+                    displayTotal = price * nights;
+                }
                 
                 const summary = document.getElementById('bookingSummary');
                 summary.classList.remove('d-none');
                 summary.innerHTML = `
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Rate:</span>
-                        <span class="fw-bold">$${price} / night</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-2">
-                        <span>Stay:</span>
-                        <span class="fw-bold">${nights} night(s)</span>
-                    </div>
-                    <hr class="my-2 border-primary border-opacity-25">
-                    <div class="d-flex justify-content-between fs-5">
-                        <span class="fw-bold text-primary">Est. Total:</span>
-                        <span class="fw-bold text-primary">$${total}</span>
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <div class="text-muted small">Rate</div>
+                            <div class="fw-bold fs-5">${currencySymbol}${displayPrice.toLocaleString()}</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="text-muted small">Stay</div>
+                            <div class="fw-bold fs-5">${nights} night${nights > 1 ? 's' : ''}</div>
+                        </div>
+                        <div class="col-4">
+                            <div class="text-muted small">Total</div>
+                            <div class="fw-bold fs-4 text-primary">${currencySymbol}${(displayTotal).toLocaleString()}</div>
+                        </div>
                     </div>
                 `;
             }
